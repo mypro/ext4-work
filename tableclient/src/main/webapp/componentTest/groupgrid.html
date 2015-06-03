@@ -1,0 +1,252 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<script type="text/javascript" src="ext-debug.js"></script>
+<script type="text/javascript" src="common/interceptor/ajax.js"></script>
+<script type="text/javascript" src="common/url.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+Ext.require([
+             'Ext.grid.*',
+             'Ext.data.*',
+             'Ext.form.field.Number',
+             'Ext.form.field.Date',
+             'Ext.tip.QuickTipManager'
+         ]);
+
+Ext.define('Factor.model.FactorPropertyModel', {
+    extend: 'Ext.data.Model',
+    fields:[
+            {name: 'uuid'},
+            {name: 'factor2Uuid'},
+            {name: 'defineUuid'},
+            {name: 'name'},
+            {name: 'dataType', type:'number'},
+            {name: 'format'},
+            {name: 'width', type:'number'},
+            {name: 'decimalWidth', type:'number'},
+            {name: 'valueLabelUuid'},
+            {name: 'value'},
+            {name: 'measure'},
+            {name: 'role'},
+            {name: 'prototype', type:'number'},
+            {name: 'seq',type:'number'}
+         ],
+});
+Ext.define('Factor.store.FactorPropertyStore', {
+    extend: 'Ext.data.Store',
+    alias : 'widget.factorPropertyStore',
+    
+    model : 'Factor.model.FactorPropertyModel',
+    
+	autoLoad: false,
+
+    proxy: {
+        type: 'ajax',
+        url : '../../../work-platform/loadFactorProperty.do',
+        reader: {
+            type: 'json'
+        }
+    },
+    groupField: 'prototype'
+})
+         var data = [
+                     {"seq":0,"width":"0","label":null,"createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"2","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"关系形状","defineUuid":"b407ad1e2be346a182dc626dadafafec"},
+                     {"seq":10,"width":"0","label":null,"createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"因子形状","defineUuid":"aff485401768412ebf96f0acb2814414"},
+                     {"seq":20,"width":"0","label":null,"createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"因子颜色","defineUuid":"8969027ac08b436ba369f4d65d29cb40"},
+                     {"seq":30,"width":"0","label":null,"createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"2","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"关系颜色","defineUuid":"7793b4cc624d4e86b398087498aea631"},
+                     {"seq":40,"width":"0","label":null,"createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"纵坐标","defineUuid":"5d90ea940c45494da7fa8ee756c5865a"},
+                     {"seq":50,"width":"16","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"序号","defineUuid":"c54ec932f5654f809712f936d09a9ef1"},
+                     {"seq":60,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"名称","defineUuid":"4ba936ece022498eb29e09546cc711d3"},
+                     {"seq":70,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"标签名","defineUuid":"301b0422a9a843ec80095514b364a5e6"},
+                     {"seq":80,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c11ab6100001c4da1c221980185c","name":"数据类型","defineUuid":"eaf07b275d584e329b6e8ad0f002bd2a"},
+                     {"seq":90,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c14148b00001e3a4b05f8fdf1a77","name":"级别类型","defineUuid":"6cee8771767a4525926a0d0c22afc705"},
+                     {"seq":100,"width":"16","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"层级数","defineUuid":"d9fa3bdbe4024ec2af4b3a89767cebce"},
+                     {"seq":110,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c157f700000118b812a0cc061986","name":"属性类型","defineUuid":"66df2a80140f49cd86ed255babcff2c3"},
+                     {"seq":130,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c16389e000012eb0b4f0140b173b","name":"通用属性标志","defineUuid":"ecf089c4b98943f69fefedf33742649b"},
+                     {"seq":140,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c16c45e000018a35107930df1843","name":"数据属性种类","defineUuid":"5eb55c8d1a7a4316a999049fae5d2532"},
+                     {"seq":150,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c172d0100001e8c0194011f0e510","name":"关系种类","defineUuid":"57bf81bc3f234edab6cff797265f95a8"},
+                     {"seq":160,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c17c07e0000139219700c4a01d6c","name":"位置种类","defineUuid":"cacbc29364854657b01dda207f8844eb"},
+                     {"seq":170,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c184aaf0000195741e3d1d0010d3","name":"容器、内容种类","defineUuid":"b83960e32bf7456bb8d07e96bce693d6"},
+                     {"seq":180,"width":"16","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"2","valueLabelUuid":"","name":"数值","defineUuid":"b99ffce9a45c40e1bb1e9f28bee862af"},
+                     {"seq":190,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"数值标签名","defineUuid":"429f442a65a540938b6a1f776f853468"},
+                     {"seq":200,"width":"16","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"因子数据长度","defineUuid":"61d455f7840441a39e61cc238b85bf29"},
+                     {"seq":210,"width":"8","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"小数位","defineUuid":"7c365e697e1e4b578a00ddfb4389eae0"},
+                     {"seq":220,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c19cced00001dd5dd813a8491435","name":"影响力标志","defineUuid":"c6f4eaf41e384f939682bac07d89cb53"},
+                     {"seq":230,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c1a84eb00001626618721fb051f0","name":"缺失","defineUuid":"8fe5246a6b4d4c30a2098e41c229949d"},
+                     {"seq":240,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"数据列宽","defineUuid":"4fc788d8d8734f98a9cb3ee7e996c125"},
+                     {"seq":250,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"0d33d67cccb14af8b141f9d72f32473b","name":"对齐方式","defineUuid":"af5d0c2ea5114cc0a82ba45f5f630511"},
+                     {"seq":260,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"822f11328b8349e8ac5b436658eb1f20","name":"度量标准","defineUuid":"dbcbfe14d8994f86a676c3bcd3ce5b1d"},
+                     {"seq":270,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"3526a1af09dd4e74a31b487cba912a20","name":"角色","defineUuid":"4cde42ce2a38422280da3ae75008d682"},
+                     {"seq":280,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c1e7fbd0000159e0190cbac927d0","name":"集群标志","defineUuid":"56a00e15f0b045d386239a5dbbe02137"},
+                     {"seq":290,"width":"12","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"X坐标","defineUuid":"fda34c8810c54400a2a3bc5d659776fd"},
+                     {"seq":300,"width":"12","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"Y坐标","defineUuid":"52b9fa5a4ff84ad88159f74ce9b8a7c9"},
+                     {"seq":310,"width":"12","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"Z坐标","defineUuid":"bc83b292e09648c78075636f6221582d"},
+                     {"seq":320,"width":"5","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"2","valueLabelUuid":"","name":"移动角度","defineUuid":"f5f3fe6486104733acdd950190a8f6f9"},
+                     {"seq":330,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"2","valueLabelUuid":"","name":"移动长度","defineUuid":"7773f6ad15a24c28a71c17b92ca5ae3e"},
+                     {"seq":340,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c20b9a100001312e5220136015f9","name":"形状","defineUuid":"a50b759c300f4d45bbe63ac73ae79f80"},
+                     {"seq":350,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c21c49300001ef9d87c4ca031ce3","name":"三维标志","defineUuid":"0428f87d949947ecac183834c7cc60e8"},
+                     {"seq":360,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c22aca200001cfe610b118a09000","name":"颜色代码","defineUuid":"69939cdd476248a69587d656ce9d0eee"},
+                     {"seq":370,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c2382f10000146841110fce019cf","name":"常用颜色分类","defineUuid":"f689e750002d4a4792acc130b67a1767"},
+                     {"seq":380,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c25081900001c3ed5f801ad0c3c0","name":"存在时间周期","defineUuid":"626d8793b217487e805bbc145b27132f"},
+                     {"seq":390,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c25dc690000197edc700c2b01dbe","name":"质变标志","defineUuid":"2347b276b3dd4211a63e7b38235c5100"},
+                     {"seq":400,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c2687fa00001dbe415a0fd7d1d53","name":"核细胞因子标志","defineUuid":"8e71f9af6d5342b5b86ec0d3be7392e2"},
+                     {"seq":410,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"有核细胞因子内核层级","defineUuid":"234e79571bd94701a87a772fc89eb647"},
+                     {"seq":420,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"因子基因","defineUuid":"26a7359d8e5d4f9f8236df7b40ac255c"},
+                     {"seq":430,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c2944400000164a2a6d016b25ca0","name":"质变触发器","defineUuid":"bbe94b5357ae4a01ad0011a51e9fa0bc"},
+                     {"seq":440,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c29cddf0000147bf6f90aaf5ae30","name":"量变触发器","defineUuid":"f829f46a04034b348bc0d7b64cf3b8c9"},
+                     {"seq":450,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"因子柔软度","defineUuid":"0492a4656a6f421aa9845ec68fc0fede"},
+                     {"seq":460,"width":"500","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"函数","defineUuid":"cc1e05bbf38f4a64818da72e3600ef92"},
+                     {"seq":470,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"国标类别代码","defineUuid":"a3a75fee721e46199398966ef4f80812"},
+                     {"seq":480,"width":"50","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"标准代码","defineUuid":"1c013b0af2cb4323bb4c44d68f8db05f"},
+                     {"seq":490,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c2bc54d00001355e1fe012c01132","name":"自运行智能因子","defineUuid":"a5d8c41503f74a049e56f436980caf24"},
+                     {"seq":500,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"关键字索引集","defineUuid":"74494a70c9f8442ab752ac58c2b985ac"},
+                     {"seq":510,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c47649b000011ee44fa0a580e0a0","name":"因子性情特征标志","defineUuid":"5cbc18b472fe4afc983850f9a85e178d"},
+                     {"seq":520,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c4a4ea100001cc15b9ea15508c60","name":"善恶属性标志","defineUuid":"c599b4ff65924078ac72022cbc9d1801"},
+                     {"seq":530,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c4af2ef0000138c3899025d71cce","name":"领导力因子","defineUuid":"f7bf9c0d279649e090d07e7c2352d2dd"},
+                     {"seq":540,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"2","valueLabelUuid":"","name":"Credit值","defineUuid":"9c850d6e647f4399b18c81866581b9f1"},
+                     {"seq":550,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"多国语言标志","defineUuid":"d63d32386dc0476a9f644a9b28c13f32"},
+                     {"seq":560,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"归属群组","defineUuid":"10fefa3be60b4603ae2bea70c60d81bd"},
+                     {"seq":570,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"归属窗口","defineUuid":"617eae2b67a24770aa08a948a61f6b57"},
+                     {"seq":580,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"归属窗口层级","defineUuid":"fe427555e3954ac9aa879a3e0c95ef9a"},
+                     {"seq":590,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"归属系统","defineUuid":"3e1ed144feba430aa18e359edd75d696"},
+                     {"seq":600,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"数据库","defineUuid":"6f93af6d2bb446d0af111525c8e91104"},
+                     {"seq":610,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"数据表","defineUuid":"6c5a1a4ecf9045cdb4880e1f76a176a1"},
+                     {"seq":620,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"字段","defineUuid":"6fe4fd887c82411d9391ceb9cff058a7"},
+                     {"seq":630,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"一级表Title","defineUuid":"3639cb947d574e1faf260264fba45325"},
+                     {"seq":640,"width":"100","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"二级表Title","defineUuid":"25437aa760c44f5dba0ebffa5edfd4ea"},
+                     {"seq":650,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"修改权限代码","defineUuid":"9b11dd593d1440e7aca2dca4cce7475f"},
+                     {"seq":660,"width":"30","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"复核权限代码","defineUuid":"1a9aab3cafd242f6ad6bcc3c79794631"},
+                     {"seq":670,"width":"8","label":"","createLevel":"2","format":"85806344e6354482822f28ff055bcdd0","prototype":"1","dataType":"2","type":"1","decimalWidth":"0","valueLabelUuid":"c5e4c4fb01600001f7e91f4098902780","name":"活动标志","defineUuid":"e773c51ce83045d2906dc80ac7a7784b"},
+                     {"seq":680,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"关联因子个数","defineUuid":"2622b0bf028b458aa0ff6c672be7c1ca"},
+                     {"seq":690,"width":"11","label":"","createLevel":"2","format":"8743c7b7607d4dadbf6f6b111af82d4a","prototype":"1","dataType":"1","type":"1","decimalWidth":"0","valueLabelUuid":"","name":"使用次数","defineUuid":"f43bbab26ae14e47b0ed4d78e3c1643b"}
+                     ];;
+
+         Ext.onReady(function(){
+             
+             Ext.tip.QuickTipManager.init();
+             
+             var store = Ext.create('Ext.data.Store', {
+                 model: 'Factor.model.FactorPropertyModel',
+                 data: data,
+                 sorters: {property: 'seq', direction: 'ASC'},
+                 groupField: 'prototype'
+             });
+
+             var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+                 clicksToEdit: 1
+             });
+             var showSummary = true;
+             var grid = Ext.create('Ext.grid.Panel', {
+                 width: 800,
+                 height: 450,
+                 frame: true,
+                 title: 'Sponsored Projects',
+                 iconCls: 'icon-grid',
+                 renderTo: document.body,
+                 store: store,
+                 plugins: [cellEditing],
+                 dockedItems: [{
+                     dock: 'top',
+                     xtype: 'toolbar',
+                     items: [{
+                         tooltip: 'Toggle the visibility of the summary row',
+                         text: 'Toggle Summary',
+                         enableToggle: true,
+                         pressed: true,
+                         handler: function(){
+                             var view = grid.getView();
+                             showSummary = !showSummary;
+                             view.getFeature('group').toggleSummaryRow(showSummary);
+                             view.refresh();
+                         }
+                     }]
+                 }],
+                 features: [{
+                     id: 'group',
+                     ftype: 'groupingsummary',
+                     groupHeaderTpl: '{name}',
+                     hideGroupedHeader: true,
+                     enableGroupingMenu: false
+                 }],
+                 columns: [Ext.create('Ext.grid.RowNumberer')
+           		    	,  {
+ 					hideable : false,
+ 					hidden : true,
+ 					summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					dataIndex : 'uuid'
+ 				}, {
+ 					hideable : false,
+ 					hidden : true,
+ 					summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					dataIndex : 'defineUuid'
+ 				}, {
+ 					hideable : false,
+ 					hidden : true,
+ 					summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					dataIndex : 'parentUuid'
+ 				}, {
+ 					header : '属性名称',
+ 					hideable : false,
+ 					hidden : false,
+ 					dataIndex : 'name',
+ 					width : 120,
+ 					 summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					filter: {
+ 		                type: 'string'
+ 		            }
+ 				}, {
+ 					header : '数据类型',
+ 					hideable : false,
+ 					hidden : false,
+ 					dataIndex : 'format',
+ 					renderer : function(dataIndex) {
+ 	    				return getTypeNameByUuid(dataIndex);
+ 	    			},
+ 	    			summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					width : 120
+ 				},{
+ 					header : '值',
+ 					hideable : false,
+ 					hidden : false,
+ 					dataIndex : 'value',
+ 					renderer : function(number){
+ 						return number;
+ 					},
+ 					summaryType: 'count',
+ 					 summaryRenderer: function(value, summaryData, dataIndex) {
+ 			                return value;
+ 			            },
+ 					editor : {
+ 						xtype : 'numberfield',
+ 						listeners : {
+ 						},
+ 					},
+ 					width : 120
+ 				}]
+             });
+         });
+
+</script>
+

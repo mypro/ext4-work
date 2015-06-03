@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<script type="text/javascript" src="ext-debug.js"></script>
+<script type="text/javascript" src="common/interceptor/ajax.js"></script>
+<script type="text/javascript" src="common/url.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+var project = getUrlParam("project");
+MI.openListeners=[function(method,url,asncFlag,user,password){
+	console.log(getUrlParam("project"));
+	if(!getUrlParam("project")){
+		return url.indexOf('?')!=-1?
+				url+"&project="+project
+				:url+"?project="+project;
+	}
+	return url;
+}];
+</script>
+<script>
+Ext.require([
+             'Ext.form.*',
+             'Ext.grid.*'
+         ]);
+
+Ext.onReady(function() {
+	 
+    var value_text_array = ['value', 'text'];   //定义一组Field
+ 
+    Ext.define('VALUE_TEXT_MODEL', {    //定义一个Model，用于Combo对应的Store
+        extend: 'Ext.data.Model',
+        fields: value_text_array,
+        idProperty: 'value'     //定义ID，方便comboStore.getById(value)方法获取数据(Record)
+    });
+ 
+    var comboStore = Ext.create('Ext.data.Store', {     //Combo对应的Store，实际应用中数据可以从后台获取
+        model: 'VALUE_TEXT_MODEL',
+        data: [
+            { value: '1', text: 'value1' },
+            { value: '2', text: 'value2' },
+            { value: '3', text: 'value3' }
+        ]
+    });
+ 
+    Ext.define('Ext.ux.PropertyCombo', {        //当PropertyGrid中需要用到多个不同Store的Combo时，集中相同的配置参数重定义一个Combo可以大量减少重复代码
+ 
+        extend:'Ext.form.field.ComboBox',
+ 
+        config: {
+            valueField: 'value',        //Combo选项的值对应的Field
+            displayField: 'text',       //Combo选项的显示文字对应的Field
+            editable: false,
+            queryMode: 'local',
+            selectOnFocus: false
+        },
+ 
+        constructor: function(config) {
+            this.initConfig(config);
+            this.callParent([config]);
+        }
+ 
+    });
+ 
+    //用于获取PropertyGrid组件的值，主要针对Combo，对于不同的Combo添加不同的case单独处理
+    //本示例中处理为向用户显示组件修改前、后的值，Combo应该显示text部分而不是value，对于其他组件会通过default直接返回value
+    function getPropertyTextByValue(paramName, value) {
+        switch(paramName) {
+        case 'Combo1' :
+            var combo1Value = comboStore.getById(value);
+            return combo1Value ? combo1Value.get('text') : '';
+        default :
+            return value;
+        }
+    }
+ 
+    Ext.create('Ext.grid.property.Grid', {
+        renderTo: Ext.getBody(),
+        id: 'propertyGridTest',
+        title: 'Properties Grid',
+        width: 300,
+       height: 600, 
+        
+        customEditors: {    //用于自定义编辑组件，左边名称与source中的名称对应
+            readOnlyText: Ext.create('Ext.form.field.Text', {   //文本框，只读
+                readOnly: true
+            }),
+            passwordText: Ext.create('Ext.form.field.Text', {   //文本框，密码，使用圆点代替显示
+                inputType: 'password'
+            }),
+            number: Ext.create('Ext.form.field.Number', {   //自定义数据编辑框，增加上下限，如果不添加该自定义框，数据也会被处理为数据编辑框，不过就没有上下限了
+                minValue: 1,
+                maxValue: 10
+            }),
+            Combo1: Ext.create('Ext.ux.PropertyCombo', {    //自定义Combo，因为使用扩展的类，只要再填充自己的store属性就好
+                store: comboStore
+            })
+        },
+       
+        /*  */
+        customRenderers: {  //用于value(function的参数v)显示之前的格式化
+            passwordText: function(v) { //将密码文本显示的时候用圆点符号代替，否则在编辑的时候为圆点，显示的时候是明文！
+                var password = '';
+                for(var i = 0; i < v.length; i++) {
+                    password = password + '&#9679;';
+                }
+                return password;
+            },
+            Combo1: function(v) {   //将value用Combo的Store里对应的text代替，否则将显示2，而不是value2
+                return getPropertyTextByValue('Combo1', v);
+            }
+        },
+        
+        propertyNames: {    //该参数可以更改属性显示的名称
+            value6: 'Rename Name'
+        },
+         
+        source: {   //初始化属性，也可以通过setSource动态添加
+            text: 'value1',
+            readOnlyText: 'Read only',
+            passwordText: '',
+            number: '1',
+            Date: Ext.Date.parse('2012/10/15', 'Y/m/d'),    //默认为日期控件
+            Boolean: false,     //默认为true、false两个选项的Combo组件
+            value6: 'Rename',
+            Combo1: ''
+        },
+
+        listeners: {        //当客户离开某组件的编辑框时该事件会响应，本例用用于简单向用户展示修改前后属性的值，超多事件参考API
+            'beforepropertychange': function(source, recordId, newValue, oldValue) {
+                if(newValue != oldValue && (newValue || oldValue)) {
+                    console.log('beforepropertychange \r old = ' + getPropertyTextByValue(recordId, oldValue) + ' : new = ' + getPropertyTextByValue(recordId, newValue));
+                }
+            },
+            'propertychange' : function(source, recordId, newValue, oldValue){
+            	console.log('propertychange \r old = ' + getPropertyTextByValue(recordId, oldValue) + ' : new = ' + getPropertyTextByValue(recordId, newValue));
+            	
+            }
+            
+        }
+    });
+ 
+    var source = {
+        text: 'value1',
+        readOnlyText: 'Read only',
+        passwordText: 'test',
+        number: '4',
+        Date: Ext.Date.parse('2012/10/15', 'Y/m/d'),
+        Boolean: false,
+        value6: 'Rename',
+        Combo1: '2'
+    };
+    
+ // add new record
+	var me = Ext.getCmp('propertyGridTest');
+	//me.propStore.setValue("newname", "", true);
+	me.propStore.insert(me.propStore.getTotalCount(), new Ext.grid.property.Property({name: "newname", value: null}, "newname"));
+	//me.customEditors["newname"]=new Ext.grid.CellEditor({ field: new Ext.form.field.Date({selectOnFocus: true})});
+	me.sourceConfig["newname"]={
+			displayName : "新值",
+			/**/
+			renderer : function(v) {
+				var r = Ext.Date.format(v,'Y-m-d');
+				return r;
+			},
+			
+			//type : 'date',
+			editor : new Ext.grid.CellEditor({ field: new Ext.form.field.Date({selectOnFocus: true})})
+	}; 
+ 
+    //Ext.getCmp('propertyGridTest').setSource(source);   //修改组件属性的值
+ 
+});
+
+
+</script>
+

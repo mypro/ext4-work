@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>text/plain;charset=UTF-8</value>
+							<value>text/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<context:component-scan base-package="cn.net.dbi"></context:component-scan>
+	<context:component-scan base-package="cn.net.dbi.controller"></context:component-scan>
+	
+	<context:component-scan base-package="cn.net.dbi.datasource.controller"></context:component-scan>
+	<context:component-scan base-package="cn.net.dbi.param.controller"></context:component-scan>
+	<context:component-scan base-package="cn.net.dbi.factor.controller"></context:component-scan>
+	<context:component-scan base-package="cn.net.dbi.project.controller"></context:component-scan>
+	<context:component-scan base-package="cn.net.dbi.upload.controller"></context:component-scan>
+    <context:component-scan base-package="cn.net.dbi.excel.controller"></context:component-scan> 
+    <context:component-scan base-package="cn.net.dbi.search.*"></context:component-scan> 
+</beans>

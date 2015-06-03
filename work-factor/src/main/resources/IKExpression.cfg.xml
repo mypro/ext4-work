@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function-configuration>
+	<!-- 系统函数默认配置 -->
+	<bean class="org.wltea.expression.function.SystemFunctions">
+		<function name="CONTAINS" method="contains">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="STARTSWITH" method="startsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="ENDSWITH" method="endsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CALCDATE" method="calcDate">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="SYSDATE" method="sysDate" />
+		<function name="DAYEQUALS" method="dayEquals">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+	</bean>
+	
+	<!-- 用户函数配置  请在这里定制您自己的函数-->
+
+	<!-- 数学与三角函数 -->
+	<bean class="cn.net.dbi.factor.function.ExpressionFucntion">
+		<function name="ABS" method="abs">
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		
+		<function name="MOD" method="mod">
+			<parameter-type>java.lang.Integer</parameter-type>
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		<function name="AVERAGE" method="average">
+			<parameter-type>java.util.List</parameter-type>
+		</function>
+		<function name="SUM" method="sum">
+			<parameter-type>java.util.List</parameter-type>
+		</function>
+		<!-- 调和平均数 -->
+		<function name="HARMEAN" method="harmean">
+			<parameter-type>java.util.List</parameter-type>
+		</function>
+		<!-- n个数中抽出 m个数的组合数 -->
+		<function name="COMBIN" method="combin">
+			<parameter-type>java.lang.Integer</parameter-type>
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		<!-- e的n次幂（自然对数） -->
+		<function name="EXP" method="exp">
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		<!-- 阶乘 -->
+		<function name="FACT" method="fact">
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		<!-- 按所指定的底数，返回某个数的对数 -->
+		<function name="LOG" method="log">
+			<parameter-type>java.lang.Integer</parameter-type>
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+		<!-- 返回圆周率π -->
+		<function name="PI" method="pi">
+		</function>
+		<!-- 返回给定数字的乘幂 -->
+		<function name="POWER" method="power">
+			<parameter-type>java.lang.Integer</parameter-type>
+			<parameter-type>java.lang.Integer</parameter-type>
+		</function>
+	</bean>
+
+
+
+</function-configuration>

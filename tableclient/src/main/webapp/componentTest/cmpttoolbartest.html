@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<script type="text/javascript" src="ext-debug.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+Ext.require([
+             'component.headtb.toolbar'
+         ]);
+
+Ext.onReady(function(){
+	
+	var toolbar = Ext.create("Toolbar.view.ToolbarView",{
+    	id : 'headToolbar',
+    	renderTo : Ext.getBody(),
+    	callback : {
+    		// 点击保存
+			save : function(toolbar,btn){
+				console.log(toolbar,btn);
+				alert('save');
+				var s= btn;
+			},
+			add : function(toolbar,btn){
+				console.log(toolbar,btn);
+				alert('add');
+				var s= btn;
+			},
+			insert : function(toolbar,btn){
+				console.log(toolbar,btn);
+				alert('insert');
+				var s= btn;
+			},
+			remove : function(toolbar,btn){
+				console.log(toolbar,btn);
+				alert('remove');
+				var s= btn;
+			},
+			import : function(toolbar,btn){
+				console.log(toolbar,btn);
+				var s= btn;
+				alert('import');
+			}
+		}
+    });
+});
+
+
+</script>

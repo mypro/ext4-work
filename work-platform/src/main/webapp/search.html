@@ -1,0 +1,198 @@
+<html>
+<head>
+  <title>搜索</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="fragment" content="!">
+
+  
+
+  <link rel="shortcut icon" type="dd/image/ico" href="favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css"/>
+<link rel="stylesheet" type="text/css" href="dbi/css/example.css" />
+  <script type="text/javascript" src="ext-all.js"></script>
+  <script type="text/javascript" src="dd/data.js"></script>
+<script type="text/javascript" src="dbi/css/examples.js"></script>
+ <script type="text/javascript" src="search/project_form.js"></script>
+ <script type="text/javascript" src="search/search_group_view.js"></script>
+  <!--  <script type="text/javascript" src="search/search.js"></script> -->
+  
+  <!-- y引入自定义treeEditor -->
+   <!--  <script type="text/javascript" src="treeEditor.js"></script> -->
+  
+  <link rel='canonical' href='http://docs.sencha.com/ext-js/4-2/' /><meta name='description' content='Ext JS 4.2.0 API Documentation from Sencha. Class documentation, Guides and Videos on how to create Javascript applications with Ext JS 4' />
+<style type="text/css">
+.headerCls{
+	background-image:url(dd/images/glass-bg.gif) !important;
+}
+.toolbar {
+    background-image:url(dd/images/glass-bg.gif) !important;
+    border-width: 0px;
+}	
+/* .x-box-inner { */
+/* 	background-image:url(dd/images/glass-bg.gif) !important; */
+/* } */
+body,html{
+	height: 100%;
+	width: 100%;
+}
+.delete_email{
+	background-image:url(dd/images/delete.png)	!important;
+	 background-repeat: no-repeat;
+    border-width: 0px;
+    width:16px;
+    height:16px;
+    overfloat:hidden;
+}
+body {
+    padding: 0 0 0 0;
+}
+.x-form-my-trigger {
+ 
+}
+.key_container{
+	margin-top: -5px;
+}
+.my-radiogroup{
+	padding: 0;!important;
+}
+#radiogroupseq-bodyEl,
+#week_group-bodyEl{
+	padding: 0 0 0 0;!important;
+}
+.select_keys,
+.x-form-display-field{
+	color: blue;
+}
+.select_keys{
+	background-image:none;
+	border: 0 none;
+	background-color: transparent;
+}
+.select_keys .x-btn-inner{
+	color: blue;
+}
+.x-my-button{
+	 background-image: url(dbi/images/form/test.gif) !important;
+	 width: 17px;
+}
+.x-my-button:HOVER{
+	background-position: -17px 0;
+}
+.icon-save {
+    background-image: url(dd/images/save.gif) !important;
+}
+.icon-grid {
+    background-image: url(dd/images/grid.png) !important;
+}
+
+.icon-add {
+    background-image: url(dd/images/add.png) !important;
+}
+.icon-insert {
+    background-image: url(dd/images/insert.png) !important;
+}
+.icon-delete {
+    background-image: url(dd/images/delete.png) !important;
+}
+
+.icon_upfile {
+   	background-image: url('dd/images/image_add.png') !important;
+}
+.x-hight-ligth {
+   	style="color:red;" !important
+}
+</style>
+<script type="text/javascript">
+Ext.require(['*']);
+
+Ext.onReady(function() {
+    var viewport = Ext.create('Ext.Viewport', {
+    	renderTo:Ext.getBody( ),
+        layout: {
+            type: 'border',
+            padding: 0
+        },
+        defaults: {
+            split: true
+        },
+        items: [{
+            region: 'west', 
+            id:'leftPanel',
+			width :document.body.clientWidth-825,
+            border: true,
+            split: true,
+            collapsible: true,
+            animCollapse: true,
+            minSize: 100,
+            maxSize: document.body.clientWidth-800,
+            items: [GRID],
+			 listeners: {
+				 resize: function(){
+					 GRID.setWidth(Ext.getCmp('leftPanel').getWidth());
+					 SEARCHCONDITION.setWidth(document.body.clientWidth-Ext.getCmp('leftPanel').getWidth());
+					 Ext.getCmp('rightPanel').setWidth(document.body.clientWidth-Ext.getCmp('leftPanel').getWidth()-10);
+				 },
+				 collapse:function(){
+					 if(!!Ext.getCmp('rightPanel').collapsed){
+						 Ext.getCmp('rightPanel').setWidth(document.body.clientWidth-40);
+						 Ext.getCmp('rightPanel').expand();
+					 }else{
+						 Ext.getCmp('rightPanel').setWidth(document.body.clientWidth-40);
+					 }
+// 					 alert('collapse');
+				 },
+				 beforeexpand:function(){
+					 Ext.getCmp('rightPanel').setWidth(800);
+// 					 alert('beforeexpand');
+				 }
+			 }
+        },{
+            region: 'center', 
+            width:5
+        },{
+            region: 'east', 
+            id:'rightPanel',
+			width :800,
+            border: true,
+            split: true,
+            collapsible: true,
+            animCollapse: true,
+            minSize: 100,
+            maxSize: 800,
+            items: [SEARCHCONDITION],
+			 listeners: {
+				 resize: function(){
+					 SEARCHCONDITION.setWidth(Ext.getCmp('rightPanel').getWidth());
+					 GRID.setWidth(document.body.clientWidth-Ext.getCmp('rightPanel').getWidth());
+					 Ext.getCmp('leftPanel').setWidth(document.body.clientWidth-Ext.getCmp('rightPanel').getWidth()-10);
+				 },
+				 collapse:function(){
+					 if(!!Ext.getCmp('leftPanel').collapsed){
+						 Ext.getCmp('leftPanel').setWidth(document.body.clientWidth-40);
+						 Ext.getCmp('leftPanel').expand();
+					 }else{
+						 Ext.getCmp('leftPanel').setWidth(document.body.clientWidth-40);
+					 }
+// 					 alert('collapse');
+				 },
+				 beforeexpand:function(){
+					 Ext.getCmp('leftPanel').setWidth(document.body.clientWidth-825);
+// 					 alert('beforeexpand');
+				 }
+			 }
+        }]
+    });
+});
+</script>
+</head>
+<body>
+<!-- 	<table  width="100%"> -->
+<!-- 		<tr> -->
+<!-- 			<td id="data_cantainer"  valign="top"></td> -->
+<!-- 			<td id="form_container" ></td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
+</body>
+</html>

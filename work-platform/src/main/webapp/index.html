@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+<title>index</title>
+
+    <!-- GC -->
+
+<style type="text/css">
+p {
+    margin:5px;
+}
+.settings {
+    background-image:url(examples/shared/icons/fam/folder_wrench.png);
+}
+.nav {
+    background-image:url(examples/shared/icons/fam/folder_go.png);
+}
+.info {
+    background-image:url(examples/shared/icons/fam/information.png);
+}
+.employee-add {
+    background-image: url('examples/shared/icons/fam/user_add.gif') !important;
+}
+
+.employee-remove {
+    background-image: url('examples/shared/icons/fam/user_delete.gif') !important;
+}
+.icon_upfile {
+   	background-image: url('dbi/images/form/image_add.png') !important;
+}
+.x-form-my-trigger {
+  background-image: url(dbi/images/form/test.gif) !important;
+}
+.x-grid-row-over .x-grid-cell-inner {
+            font-weight: bold;
+        }
+</style>
+
+<!-- 引入ext -->
+<script type="text/javascript" src="dbi/html/ext-all-debug.js"></script>
+
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css"/>
+<link rel="stylesheet" type="text/css" href="dd/resources/css/LiveSearchGridPanel.css" />
+    <link rel="stylesheet" type="text/css" href="dd/resources/css/statusbar.css" />
+<!-- 引入弹出提示框的js -->
+<link rel="stylesheet" type="text/css" href="dbi/css/example.css" />
+<script type="text/javascript" src="dbi/css/examples.js"></script>
+<!-- 通用参数下拉框 -->
+<script type="text/javascript" src="dbi/common/param.js"></script>
+<script type="text/javascript" src="dbi/common/paramFunc.js"></script>
+<!-- 主界面布局 -->
+<script type="text/javascript" src="dbi/view/index.js"> </script>
+<!-- 引入菜单handler -->
+<script type="text/javascript" src="dbi/func/menuFunc.js"> </script>
+<!-- 菜单样式 -->
+<link rel="stylesheet" type="text/css" href="dbi/css/writer.css" />
+<!-- 引入左侧树的功能 -->
+<script type="text/javascript" src="dbi/func/treeFunc.js"> </script>
+<!-- 变量视图和数据视图 -->
+<script type="text/javascript" src="dbi/func/centerTabpanelFunc.js"> </script>
+<script type="text/javascript" src="dbi/func/loadBLSTFunc.js"> </script>
+<script type="text/javascript" src="dbi/func/loadSJSTFunc.js"> </script>
+<script type="text/javascript" src="dbi/data/stores.js"> </script>
+<!-- 选择数据类型和变量纸标签打开小窗口的功能 -->
+<script type="text/javascript" src="dbi/func/openWinFunc.js"> </script>
+<script type="text/javascript" src="dbi/func/openMissingWin.js"> </script>
+<!-- 导入数据 -->
+<script type="text/javascript" src="dbi/fileUpload/fileUpload.js"> </script>
+<!-- 重写的源码 -->
+<script type="text/javascript" src="dbi/html/overrideCellEditing.js"></script>
+<!-- 引入uuid.js -->
+<script type="text/javascript" src="dbi/util/uuid.js"></script>
+<script type="text/javascript">
+Ext.require([
+             'component.variablegrid.variablegrid',
+             'Ext.form.Panel',
+             'component.valuelabel.valuelabel',
+             'component.missing.missing',
+             'component.datatype.datatype'
+         ]);
+</script>
+</head>
+<body>
+
+    <!-- use class="x-hide-display" to prevent a brief flicker of the content -->
+    <div id="north">
+    </div>
+    <div id="west" class="x-hide-display">
+	    <input type="text" id="currentTbl" name="currentTbl"/>
+	    <input type="text" id="tbluuid" name="tbluuid"/>
+	    <input type="text" id="isSaved" name="isSaved"/>
+        <div id="tree-div"></div>
+    </div>
+    <div id="center" class="x-hide-display" >
+	    
+	 </div>
+    <div id="props-panel" class="x-hide-display" style="width:200px;height:200px;overflow:hidden;">
+    </div>
+    <div id="south" class="x-hide-display">
+        <p>south - generally for informational stuff, also could be for status bar</p>
+    </div>
+    
+</body>
+</html>

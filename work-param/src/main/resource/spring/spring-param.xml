@@ -1,0 +1,81 @@
+<?xml  version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="DBParamInfoLoader" class="cn.net.dbi.param.load.DBParamInfoLoader">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="paramCacheProxy" class="cn.net.dbi.boom.cache.CacheProxy">
+		<property name="cacheName" value="paramCache" />
+	    <property name="cacheImpl">
+	      <value>cn.net.dbi.param.ParamInfo</value>
+	    </property>
+	    <property name="initMethod">
+	      <value>init</value>
+	    </property>
+	    <!-- 
+	    <property name="writeMethod">
+	      <list>
+	        <value>init</value>
+	      </list>
+	    </property>
+	    
+	    <property name="readMethod">
+	      <list>
+	        <value>getTables</value>
+	      </list>
+	    </property> -->
+	    <property name="cacheProperties">
+	      <map>
+	        <entry key="loader" value-ref="DBParamInfoLoader" />
+	      </map>
+	    </property>
+	</bean>
+	
+	<bean id="paramService" class="cn.net.dbi.param.ParamService">
+		<property name="dao" ref="commonHibernateDao" />
+	</bean>
+	
+	
+	 <bean id="DBTypeInfoLoader" class="cn.net.dbi.param.load.DBTypeInfoLoader">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="typeCacheProxy" class="cn.net.dbi.boom.cache.CacheProxy">
+		<property name="cacheName" value="typeCache" />
+	    <property name="cacheImpl">
+	      <value>cn.net.dbi.param.TypeInfo</value>
+	    </property>
+	    <property name="initMethod">
+	      <value>init</value>
+	    </property>
+	    <property name="cacheProperties">
+	      <map>
+	        <entry key="loader" value-ref="DBTypeInfoLoader" />
+	      </map>
+	    </property>
+	</bean>
+	
+	<bean id="DBValueLabelInfoLoader" class="cn.net.dbi.param.load.DBValueLabelInfoLoader">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="valueLabelCacheProxy" class="cn.net.dbi.boom.cache.CacheProxy">
+		<property name="cacheName" value="valueLabelCache" />
+	    <property name="cacheImpl">
+	      <value>cn.net.dbi.param.ValueLabelInfo</value>
+	    </property>
+	    <property name="initMethod">
+	      <value>init</value>
+	    </property>
+	    <property name="cacheProperties">
+	      <map>
+	        <entry key="loader" value-ref="DBValueLabelInfoLoader" />
+	      </map>
+	    </property>
+	</bean>
+	<bean id="valueLabelService" class="cn.net.dbi.param.ValueLabelService">
+		<property name="dao" ref="commonHibernateDao" />
+	</bean>
+</beans>

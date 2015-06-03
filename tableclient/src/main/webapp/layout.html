@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<link rel="stylesheet" type="text/css" href="lib/jointjs/joint.css">
+<script type="text/javascript" src="ext-all.js"></script>
+<script type="text/javascript" src="common/interceptor/ajax.js"></script>
+<script type="text/javascript" src="common/url.js"></script>
+<script type="text/javascript" src="lib/jointjs/joint.js"></script>
+<style type="text/css">
+.operator
+{
+  width: 30px;
+  text-decoration: none;	            
+  background: #ddd;
+  color: #444;	
+  padding: 0px 0px;
+  text-transform: uppercase;
+  font: bold 12px Arial,Helvetica;          
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  -moz-box-shadow: 0 1px 0 #ccc;
+  -webkit-box-shadow: 0 1px 0 #ccc;
+  box-shadow: 0 1px 0 #ccc;   
+}
+
+.operator:hover
+{
+    color: #eee;
+    background: #9c9c9c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#999));
+    background: -webkit-linear-gradient(top, #bbb, #999); 
+    background:    -moz-linear-gradient(top, #bbb, #999); 
+    background:     -ms-linear-gradient(top, #bbb, #999); 
+    background:      -o-linear-gradient(top, #bbb, #999); 
+    background:         linear-gradient(top, #bbb, #999);          
+}
+</style>
+<script>
+
+var project = getUrlParam(window.location.search, "project");
+/**/
+MI.openListeners=[function(method,url,asncFlag,user,password){
+	if(!getUrlParam(url, "base") && !getUrlParam(url, "project")){
+		return url.indexOf('?')!=-1?
+				url+"&project="+project
+				:url+"?project="+project;
+	}
+	return url;
+}];
+
+</script>
+<script type="text/javascript" src="layout/layout.js"></script>
+</head>
+<body>
+<div id="south" class="x-hide-display">
+    <p>south - generally for informational stuff, also could be for status bar</p>
+</div>
+</body>
+</html>

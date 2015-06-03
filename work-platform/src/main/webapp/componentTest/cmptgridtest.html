@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<script type="text/javascript" src="ext-debug.js"></script>
+<script type="text/javascript" src="dbi/common/param.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+Ext.require([
+             'component.variablegrid.variablegrid',
+             'Ext.form.Panel',
+             'component.valuelabel.valuelabel',
+             'component.missing.missing',
+             'component.datatype.datatype'
+         ]);
+
+Ext.onReady(function(){
+	
+	var win = Ext.create("VariableGrid.view.VariableView",{
+    	id : 'variablegrid',
+    	renderTo : Ext.getBody(),
+    	data:{
+    		tblUuid:'aa473745579144b383df76a4cd47a18b'
+    	},
+    	callback : {
+			// 点击保存
+			openValueWin : function(){
+				var win = Ext.create('ValueLabel.view.ValueLabelWindow',{
+					id : 'valueLabel',
+					// 初始化数据
+					data : {
+						xtype:"numberfield",
+						defineName:"性别"
+//			 			dataType : 'd96620a7749b477d9a23e1e36a56ab19',
+//			 			width : 101,
+//			 			decimalWidth : 11
+					},
+					 callback : {
+						// 点击保存
+						save : function(win, defineUuid, head, newsJson,updatesJson){
+							console.log(win+' '+defineUuid+' '+head+' '+newsJson+' '+updatesJson);
+							win.hide();
+						}
+					} 
+				}).show();
+			},
+			openMissingWin:function(){
+				var win = Ext.create('Missing.view.MissingWindow',{
+					id : 'missingWindow'
+				}).show();
+			},
+			openDataTypeWin:function(){
+				var win = Ext.create('DataType.view.DataTypeWindow',{
+					id : 'datatypeWindow',
+					// 初始化数据
+					data : {
+						dataType : 'd96620a7749b477d9a23e1e36a56ab19',
+						width : 101,
+						decimalWidth : 11
+					},
+					callback : {
+						// 点击保存
+						save : function(win, dataTypeValue, widthValue, decimalValue){
+							console.log(win+' '+dataTypeValue+' '+widthValue+' '+decimalValue);
+						},
+						// 切换数据类型
+						changeRadio : function(win, field, newValue){
+							console.log(win+' '+field+' '+newValue);
+						}
+					}
+				}).show();
+			}
+		}
+    });
+});
+
+
+</script>

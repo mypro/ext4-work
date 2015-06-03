@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>震荡图</title>
+<style type="text/css">
+div{
+		border:1px #000000   solid;
+		width:3000px;
+		height:3000px;
+	}
+
+</style>
+<link rel="stylesheet" href="lib/jointjs/joint.css" />
+<script src="lib/jointjs/joint.js"></script>
+<script src="shock.js"></script>
+
+<script>
+//$(document).ready(function(){
+	
+
+
+var data = {name:'root',background:'#F1C40F',border:'gray',child:[{ name:'第一级1',background:'#F1C40F',border:'gray',child:[
+												{name:'第二级1', background:'#F1C40F',border:'gray',child:[
+												{name:'第三级1.1', background:'#F1C40F',border:'gray',child:[]},{ name:'第三级1.2',background:'#F1C40F',border:'gray',child:[]},{name:'第三级1.3',  background:'#F1C40F',border:'gray',child:[{name:'第四级1.1',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级1.2',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级1.3',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级1.4',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级1.5',  background:'#F1C40F',border:'gray',child:[]}]},{name: '第三级1.4',  background:'#F1C40F',border:'gray',child:[]}
+																						]},
+																
+												{ name:'第二级2',  background:'#F1C40F',border:'gray',child:[
+																						{name: '第三级2.1', background:'#F1C40F',border:'gray',child:[]},{name: '第三级2.2',  background:'#F1C40F',border:'gray',child:[]},{name:'第三级2.3',  background:'#F1C40F',border:'gray',child:[]}
+																						]},
+																
+												{ name:'第二级3',  background:'#F1C40F',border:'gray',child:[
+																						{ name:'第三级3.1', background:'#F1C40F',border:'gray',child:[{name:'第四级3.1',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级3.2',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级3.3',  background:'#F1C40F',border:'gray',child:[]}]},{name:'第三级3.2',  background:'#F1C40F',border:'gray',child:[]},{name: '第三级3.3', background:'#F1C40F',border:'gray',child:[]}
+																						]},
+												{name: '第二级4', background:'#F1C40F',border:'gray',child:[]},
+												{name: '第二级4', background:'#F1C40F',border:'gray',child:[]},
+												{name: '第二级4', background:'#F1C40F',border:'gray',child:[]},
+												{name: '第二级5', background:'#F1C40F',border:'gray',child:[]}  
+												]},
+							{ name:'第一2级',background:'#F1C40F',border:'gray',child:[
+												{name:'第二级2.1', background:'#F1C40F',border:'gray',child:[]},
+																
+												{ name:'第二级2.2',  background:'#F1C40F',border:'gray',child:[]},
+																
+												{ name:'第二级2.3',  background:'#F1C40F',border:'gray',child:[]},
+												{name: '第二级2.4', background:'#F1C40F',border:'gray',child:[]} 
+												]}   ]};
+
+
+
+var data2 = {name:'root',background:'#F1C40F',border:'gray',child:[{ name:'第一级1',background:'#F1C40F',border:'gray',child:[
+												{name:'第二级1', background:'#F1C40F',border:'gray',child:[
+												{name:'第三级1.1', background:'#F1C40F',border:'gray',child:[]},{ name:'第三级1.2',background:'#F1C40F',border:'gray',child:[]},{name:'第三级1.3',  background:'#F1C40F',border:'gray',child:[]},{name: '第三级1.4',  background:'#F1C40F',border:'gray',child:[]}
+																						]},
+																
+												{ name:'第二级2',  background:'#F1C40F',border:'gray',child:[
+																						{name: '第三级2.1', background:'#F1C40F',border:'gray',child:[]},{name: '第三级2.2',  background:'#F1C40F',border:'gray',child:[]},{name:'第三级2.3',  background:'#F1C40F',border:'gray',child:[]}
+																						]},
+																
+												{ name:'第二级3',  background:'#F1C40F',border:'gray',child:[
+																						{ name:'第三级3.1', background:'#F1C40F',border:'gray',child:[{name:'第四级3.1',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级3.2',  background:'#F1C40F',border:'gray',child:[]},{name:'第四级3.3',  background:'#F1C40F',border:'gray',child:[]}]},{name:'第三级3.2',  background:'#F1C40F',border:'gray',child:[]},{name: '第三级3.3', background:'#F1C40F',border:'gray',child:[]}
+																						]},
+												{name: '第二级4', background:'#F1C40F',border:'gray',child:[]} 
+												]}   ]};
+
+//渲染函数
+//renderframe('rect',f,data,-100,10,140,40);
+//render(f,'',data.child,30,100);
+//	});
+
+
+function 	renderit1(){
+	$("#paper").html('');
+	var f = new Frame();
+	render1(f,data,-100,10,140,40,'#F1C40F','gray');
+	}
+function 	renderit2(){
+	$("#paper").html('');
+	var f = new Frame();
+	render2(f,data,10,10,40,140,'#F1C40F','gray');
+	}
+
+function 	renderit3(){
+	$("#paper").html('');
+	var f = new Frame();
+	render3(f,'',data,30,50,140,40,'#F1C40F','gray');
+	}
+function 	renderit4(){
+	$("#paper").html('');
+	var f = new Frame();
+	render4(f,'',data,30,50,40,60,'#F1C40F','gray');
+	}
+	
+function 	renderit5(){
+	$("#paper").html('');
+	var  f = new Frame();
+	render5(f,'',data,30,50,40,60,'#F1C40F','gray');
+	}
+	
+	
+</script>
+</head>
+
+<body>
+<input type="button" value="view1" onclick="renderit1();">
+<input type="button" value="view2" onclick="renderit2();">
+<input type="button" value="view3" onclick="renderit3();">
+<input type="button" value="view4" onclick="renderit4();">
+<input type="button" value="view5 加了随机数" onclick="renderit5();">
+<div id="paper">
+</div>
+
+</body>
+
+
+</html>

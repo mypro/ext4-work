@@ -1,0 +1,20 @@
+target
+filters
+*.class
+
+.classpath
+.project
+.settings
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+portable-context-config.xml
+bin

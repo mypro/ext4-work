@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<script type="text/javascript" src="ext-debug.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+Ext.require([
+             'Ext.form.Panel',
+             'component.valuelabel.valuelabel'
+         ]);
+
+Ext.onReady(function(){
+	
+	var win = Ext.create('ValueLabel.view.ValueLabelWindow',{
+		id : 'valueLabel',
+		// 初始化数据
+		data : {
+			xtype:"numberfield",
+			defineName:"性别"
+// 			dataType : 'd96620a7749b477d9a23e1e36a56ab19',
+// 			width : 101,
+// 			decimalWidth : 11
+		},
+		 callback : {
+			// 点击保存
+			save : function(win, defineUuid, head, newsJson,updatesJson){
+				console.log(win+' '+defineUuid+' '+head+' '+newsJson+' '+updatesJson);
+				win.hide();
+			}
+		} 
+	}).show();
+});
+
+
+</script>

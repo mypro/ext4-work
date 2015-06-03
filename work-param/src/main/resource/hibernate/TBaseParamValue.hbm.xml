@@ -1,0 +1,17 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC  
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping package="cn.net.dbi.param.bean" schema="DB_BASE"> 
+ 
+    <class name="ParamValue" table="T_BASE_PARAM_VALUE"> 
+        <id name="uuid" type="java.lang.String" column="uuid"> 
+            <generator class="assigned"/> 
+        </id>
+        <property name="defineUuid" column="defineUuid" type="java.lang.String" />
+        <property name="name" column="name" type="java.lang.String" />
+        <property name="seq" column="seq" type="java.lang.Integer" />
+    </class> 
+ 
+</hibernate-mapping> 

@@ -1,0 +1,6 @@
+{	"text":"test",
+    "children":[{"id":"1","text": "aaa", "description": "dddd", "leaf": true},
+              {"id":"2","text": "test", "description": "dddd2", "leaf": true},
+              {"id":"3","text": "text3", "description": "dddd3", "leaf": true},
+              {"id":"4","text": "text4", "description": "dddd4", "leaf": true}]
+}

@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all-debug.css">
+<link rel="stylesheet" type="text/css" href="lib/jointjs/joint.css">
+<script type="text/javascript" src="ext-all.js"></script>
+<script type="text/javascript" src="examples/shared/examples.js"></script>
+
+
+<script type="text/javascript" src="lib/jointjs/joint.js"></script>
+<script type="text/javascript" >
+Ext.onReady(function() {
+	Ext.create('Ext.container.Viewport', {
+				title : 'Border Layout',
+				layout : 'border',
+				defaults : {
+					collapsible : true,
+					split : true
+				},
+				items : [{
+							border : false,
+							collapsible : false,
+							split : false,
+							html : '<h1 class="x-panel-header">顶部内容</h1>',
+							region : 'north',
+							margins : '0 0 5 0',
+							height : 50
+						}, {
+							title : '公司描述',
+							region : 'south',
+							height : 50
+						}, {
+							title : '导航菜单',
+							region : 'west',
+							width : 100
+						}, {
+							title : '暂时没用',
+							region : 'east',
+							width : 100
+						}, {
+							title : '内容面板',
+							region : 'center',
+							items : []
+						}],
+				renderTo : Ext.getBody()
+			});
+}); 
+</script>
+
+</head>
+<body>
+<div id="south" class="x-hide-display">
+    <p></p>
+</div>
+</body>
+</html>
